@@ -101,7 +101,7 @@ searchBar address model =
   , autofocus True
   , value model.query
   , on "input" targetValue (Signal.message address << QueryUpdate)
-  , class "col col-10 field rounded-left x-group-item"
+  , class "col-10 field rounded-left x-group-item"
   ]
   []
 
@@ -110,14 +110,14 @@ searchButton address model =
   button 
   [ type' "submit"
   , onClick address PerformQuery 
-  , class "col col-2 btn btn-primary rounded-right"
+  , class "col-2 btn btn-primary rounded-right"
   ]
   [ text "Search" ]
 
 searchForm : Signal.Address Action -> Model -> Html
 searchForm address model = 
   Html.form 
-  [ class "block clearfix m1"
+  [ class "block m1"
   , onWithOptions 
       "submit" 
       { stopPropagation = True, preventDefault = True } 
@@ -131,8 +131,8 @@ searchForm address model =
 viewPhoto : Photo -> Html
 viewPhoto photo = 
   div 
-  [ class "col-3 mx-auto flex flex-center"
-  , style [("overflow", "hidden"), ("height", "30vh")]
+  [ class "sm-col md-col-6 lg-col-4 mx-auto flex flex-center"
+  , style [("overflow", "hidden"), ("height", "20vh")]
   ]
   [  img 
     [ src (photoUrl photo)
