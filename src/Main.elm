@@ -117,7 +117,7 @@ searchButton address model =
 searchForm : Signal.Address Action -> Model -> Html
 searchForm address model = 
   Html.form 
-  [ class "block clearfix"
+  [ class "block clearfix m1"
   , onWithOptions 
       "submit" 
       { stopPropagation = True, preventDefault = True } 
@@ -130,24 +130,31 @@ searchForm address model =
 
 viewPhoto : Photo -> Html
 viewPhoto photo = 
-  img 
-  [ src (photoUrl photo)
-  , width 150
-  , height 150 
-  ] 
-  []
+  div 
+  [ class "col-3 mx-auto flex flex-center"
+  , style [("overflow", "hidden"), ("height", "30vh")]
+  ]
+  [  img 
+    [ src (photoUrl photo)
+    , style [("min-width", "100%"), ("min-height", "100%"), ("vertical-align", "middle"), ("height", "auto"), ("width", "auto")]
+    ] 
+    []
+  ]
 
 resultsBox : Signal.Address Action -> Model -> Html
 resultsBox address model =
-  div []
-      ( List.map viewPhoto model.results )
+  div 
+  [ class "flex flex-wrap flex-center flex-justify m1"
+  ]
+  ( List.map viewPhoto model.results )
 
 view : Signal.Address Action -> Model -> Html
 view address model =
   let _ = Debug.log "model" model
   in 
     div
-    []
+    [
+    ]
     [ (searchForm address model)
     , (resultsBox address model)
     ]
